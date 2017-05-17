@@ -5,16 +5,16 @@ from time import time
 import numpy as np
 from tqdm import tqdm
 
-FE = ExpressionAPI.Feature_Extractor(verbose=1, batch_size=30)
-out = './data/disfa/'
+FE = ExpressionAPI.Feature_Extractor(verbose=0, batch_size=30)
+out = './tmp/'
 
 
-# sequences = sorted(list(glob.glob('/homes/rw2614/data/databases/ck+/frames/*')))
-sequences = sorted(list(glob.glob('/homes/rw2614/data/raw/disfa/*')))
+sequences = sorted(list(glob.glob('/homes/rw2614/data/databases/ck+/frames/*')))
+# sequences = sorted(list(glob.glob('/homes/rw2614/data/raw/disfa/*')))
 
 for i in tqdm(range(len(sequences))):
     seq = sequences[i]
-    seq_frames = sorted(list(glob.glob(seq+'/*.jpg')))
+    seq_frames = sorted(list(glob.glob(seq+'/*.png')))
 
     lab = []
     for frame in seq_frames:
