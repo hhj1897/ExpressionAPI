@@ -16,7 +16,7 @@ class Feature_Extractor():
             os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
         if weights== 'default':
-            weights= os.path.dirname(__file__)+'/models/ResNet50_raw_input/best_model.h5'
+            weights= os.path.dirname(__file__)+'/models/ResNet50_aug_1.1/best_model.h5'
 
         base_net = applications.resnet50.ResNet50( weights = None )
         inp = base_net.input
@@ -37,7 +37,7 @@ class Feature_Extractor():
             )
 
     def get_input_features_from_numpy(self, img_batch):
-        img, pts, pts_raw = self.preprocess.batch_transform(img_batch, face_detect=True, preprocessing=True)
+        img, pts, pts_raw = self.preprocess.batch_transform(img_batch, face_detect=True, preprocessing=False)
         img = np.float32(img)
         img_pp = img[:,16:-16,16:-16,:]
         img_pp -= np.apply_over_axes(np.mean, img_pp, [1,2])

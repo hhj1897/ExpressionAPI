@@ -160,8 +160,6 @@ def train_model(args):
             loss = loss 
             )
 
-    # K.utils.plot_model(model, to_file=args.log_dir+'/model.png', show_shapes=True)
-
     model.fit_generator(
             generator = GEN_TR_a, 
             steps_per_epoch = 2000,
@@ -178,36 +176,3 @@ def train_model(args):
             )
 
     return model, pip
-
-if __name__=='__main__':
-
-    parser = argparse.ArgumentParser(description='Train model for AU intenistie estimation')
-    parser.add_argument("-tr","--trainingData", type=str, default='tr')
-    parser.add_argument("-l","--log_dir", type=str, default='/tmp')
-
-    # parser.add_argument("-r","--rotate", type=float, default=20)
-    # parser.add_argument("-e","--epochs", type=int, default=100)
-    # parser.add_argument("-g","--gaussian_range", type=float, default=4)
-    # parser.add_argument("-n","--normalization", type=int, default=0)
-    # parser.add_argument("-t","--transform", type=float, default=0.2)
-    # parser.add_argument("-z","--zoom", type=float, default=0.3)
-
-    # parser.add_argument("-r","--rotate", type=float, default=9)
-    # parser.add_argument("-e","--epochs", type=int, default=100)
-    # parser.add_argument("-g","--gaussian_range", type=float, default=2)
-    # parser.add_argument("-n","--normalization", type=int, default=0)
-    # parser.add_argument("-t","--transform", type=float, default=0.05)
-    # parser.add_argument("-z","--zoom", type=float, default=0.1)
-
-    parser.add_argument("-r","--rotate", type=float, default=0)
-    parser.add_argument("-e","--epochs", type=int, default=100)
-    parser.add_argument("-g","--gaussian_range", type=float, default=0)
-    parser.add_argument("-n","--normalization", type=int, default=0)
-    parser.add_argument("-t","--transform", type=float, default=0)
-    parser.add_argument("-z","--zoom", type=float, default=0)
-    args = parser.parse_args()
-
-    os.makedirs(args.log_dir, exist_ok=True)
-    pickle.dump(args,open(args.log_dir+'/args.pkl','wb'))
-
-    train_model(args)
