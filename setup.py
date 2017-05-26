@@ -26,7 +26,7 @@ setup(
         "License :: OSI Approved :: BSD License",
     ],
     data_files = [
-        ('./ExpressionAPI/models/ResNet50_raw_input/', ['./ExpressionAPI/models/ResNet50_raw_input/best_model.h5']),
+        ('./ExpressionAPI/models/ResNet50_aug_1.1', ['./ExpressionAPI/models/ResNet50_aug_1.1/best_model.h5']),
         ],
     packages=find_packages(),
 )
